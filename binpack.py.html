@@ -1,0 +1,109 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Python Generated Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 10px;
+        }
+    </style>
+    </head>
+    <body>
+            <h1>binpack.py</h1>
+                <h3>Documentation information:</h3>
+                <p><strong>Project name:</strong> Documentation Shipping V1.0 Esk.Nr.3</p>
+                <p><strong>Documentation made:</strong> 2024-05-23</p>
+                <p><strong>The documentation was generated from the following file:</strong>C:/Users/Gleb/Desktop/Shipping/Project/binpack.py</p>
+            <h2>Import Statements:</h2>
+                <pre><code>import time
+
+from package import Package
+
+import binpack_simple
+
+</code></pre>
+            <h2>Methodes list:</h2>
+                <pre><code></pre></code>
+            <h2>Function list:</h3>
+                <pre><code><li>binpack(packages, bin=None, iterlimit=5000):</li>
+<li>test(func):</li>
+<li>add(a, b):</li>
+</pre></code>
+            <h2>Class list:</h3>
+                <pre><code></pre></code>
+            <p></p>
+            <h2>Detailed description:</h3>
+                <div><pre><code>#!/usr/bin/env python</code></pre>
+<pre><code># encoding: utf-8</code></pre>
+<div><p>binpack.py</p>
+<p><b>Author:</b> MSC</p>
+<p>Created by Maximillian Dornsei</p>
+<p><b>Date:</b> 2017-08-16.</p>
+<p><b>Version:</b> binpack V1.1</p>
+</div></div><div class="example"><p>Code:</p><pre><code>def binpack(packages, bin=None, iterlimit=5000):
+    return binpack_simple.binpack(packages, bin, iterlimit)
+</code></pre></div><div><h3>Method:</h3><p> test - - Test multiplication</p>
+</div><div class="example"><p>Code:</p><pre><code>def test(func):
+    fd = open('testdata.txt')
+    vorher = 0
+    nachher = 0
+    start = time.time()
+    counter = 0
+    for line in fd:
+        counter += 1
+        if counter > 450:
+            break
+        packages = [Package(pack) for pack in line.strip().split()]
+        if not packages:
+            continue
+        bins, rest = func(packages)
+        if rest:
+            print "invalid data", rest, line
+        else:
+            vorher += len(packages)
+            nachher += len(bins)
+    print time.time() - start,
+    print vorher, nachher, float(nachher) / vorher * 100
+</code></pre></div><div><h3>Method:</h3><p> _add_ - - This function takes two numbers as input and returns their sum.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def add(a, b):
+</code></pre></div><div><p><b>Parameters:</b> a - (float or int): The first number.</p>
+<p><b>Parameters:</b> b - (float or int): The second number.</p>
+<p><b>Return value:</b> result - - float or int: The sum of the two input numbers.</p>
+</div><div class="example"><p>Code:</p><pre><code>        result = a + b
+        return result
+</code></pre></div><div><pre><code># Example usage:</code></pre>
+</div><div class="example"><p>Code:</p><pre><code>        num1 = 5
+        num2 = 3
+        sum_result = add(num1, num2)
+        print(f"The sum of {num1} and {num2} is {sum_result}")
+if __name__ == '__main__':
+    print "py",
+    test(binpack)
+
+        </div>
+    </body>
+    </html>
+    

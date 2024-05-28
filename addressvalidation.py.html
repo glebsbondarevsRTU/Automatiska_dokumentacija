@@ -1,0 +1,129 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Python Generated Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .example {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 10px;
+        }
+    </style>
+    </head>
+    <body>
+            <h1>addressvalidation.py</h1>
+                <h3>Documentation information:</h3>
+                <p><strong>Project name:</strong> Documentation Shipping V1.0 Esk.Nr.3</p>
+                <p><strong>Documentation made:</strong> 2024-05-23</p>
+                <p><strong>The documentation was generated from the following file:</strong>C:/Users/Gleb/Desktop/Shipping/Project/addressvalidation.py</p>
+            <h2>Import Statements:</h2>
+                <pre><code>import unittest
+
+</code></pre>
+            <h2>Methodes list:</h2>
+                <pre><code><li>setUp(self):</li>
+<li>test_good_address(self):</li>
+<li>test_missing_zip(self):</li>
+<li>test_short_zip(self):</li>
+<li>test_long_zip(self):</li>
+</pre></code>
+            <h2>Function list:</h3>
+                <pre><code><li>validate(adr, servicelevel=1):</li>
+<li>add(a, b):</li>
+</pre></code>
+            <h2>Class list:</h3>
+                <pre><code><li>AddressvalidationTests(unittest.TestCase):</li>
+</pre></code>
+            <p></p>
+            <h2>Detailed description:</h3>
+                <div><pre><code>#!/usr/bin/env python</code></pre>
+<pre><code># encoding: utf-8</code></pre>
+<div><p>addressvalidation.py - check the validity of addresses</p>
+<p><b>Author:</b> MSC</p>
+<p><b>Date:</b> 2016-09-02.</p>
+<p><b>Version:</b> package V1.2</p>
+</div><div><h3>Method:</h3><p> validate - -  Validates an address and returns a possibly corrected address.</p>
+</div></div><div class="example"><p>Code:</p><pre><code>def validate(adr, servicelevel=1):
+</code></pre></div><div><p><b>Parameters:</b> adr - should be a object conforming to the address protocol</p>
+<p><b>Parameters:</b> servicelevel - can be an integer with the following values:</p>
+<p><b>Value:</b> 1 - - generic validation, no money/effort should be spend on correction and suggestions</p>
+<p><b>Value:</b> 2 - - TBD.</p>
+<p>status can be:</p>
+</div><div class="example"><p>Code:</p><pre><code>    adr['land'] = adr['land'].strip()
+    adr['plz'] = adr['plz'].strip()
+</code></pre></div><div><p><b>Return value:</b> returns - (status, message, [corrected addresses and variants])</p>
+</div><div class="example"><p>Code:</p><pre><code>    if adr['land'] != 'IE' and not adr['plz']:
+        return ('10invalid', 'Postleitzahl fehlt', [adr])
+    if adr['land'] == 'DE' and len(adr.get('plz', '')) != 5:
+        return ('10invalid', 'Postleitzahl fehlerhaft', [adr])
+    return ('30ok', '', [adr])
+</code></pre></div><div><p>$cl AddressvalidationTests Tests for the address validation facility.</p>
+</div><div class="example"><p>Code:</p><pre><code>class AddressvalidationTests(unittest.TestCase):
+</code></pre></div><div><h3>Method:</h3><p> setUp - Set up test address base.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def setUp(self):
+        self.address = {'name1': 'HUDORA GmbH',
+                        'name2': 'Abt. Cybernetics',
+                        'strasse': 'Jägerwald 13',
+                        'land': 'DE',
+                        'plz': '42897',
+                        'ort': 'Remscheid',
+                        'tel': '+49 2191 60912 0',
+                        'fax': '+49 2191 60912 50',
+                        'mobil': '+49 175 00000xx',
+                        'email': 'nobody@hudora.de'}
+</code></pre></div><div><h3>Method:</h3><p> _add_ - - This function takes two numbers as input and returns their sum.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def add(a, b):
+</code></pre></div><div><p><b>Parameters:</b> a - (float or int): The first number.</p>
+<p><b>Parameters:</b> b - (float or int): The second number.</p>
+<p><b>Return value:</b> result - - float or int: The sum of the two input numbers.</p>
+</div><div class="example"><p>Code:</p><pre><code>        result = a + b
+        return result
+</code></pre></div><div><pre><code># Example usage:</code></pre>
+</div><div class="example"><p>Code:</p><pre><code>        num1 = 5
+        num2 = 3
+        sum_result = add(num1, num2)
+        print(f"The sum of {num1} and {num2} is {sum_result}")
+</code></pre></div><div><h3>Method:</h3><p> test_good_address - -  Test if correct addresses are considered correct.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def test_good_address(self):
+        self.assertEqual(validate(self.address)[0], '30ok')
+        self.assertEqual(validate(self.address)[1], '')
+</code></pre></div><div><h3>Method:</h3><p> test_missing_zip - -  Test if correct addresses are considered correct.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def test_missing_zip(self):
+        self.address['plz'] = ''
+        self.assertEqual(validate(self.address)[0], '10invalid')
+</code></pre></div><div><h3>Method:</h3><p> test_short_zip - -  Test if correct addresses are considered correct.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def test_short_zip(self):
+        self.address['plz'] = '123'
+        self.assertEqual(validate(self.address)[0], '10invalid')
+</code></pre></div><div><h3>Method:</h3><p> test_long_zip - -  Test if correct addresses are considered correct.</p>
+</div><div class="example"><p>Code:</p><pre><code>    def test_long_zip(self):
+        self.address['plz'] = '12345 Rade'
+        self.assertEqual(validate(self.address)[0], '10invalid')
+if __name__ == '__main__':
+    unittest.main()
+
+        </div>
+    </body>
+    </html>
+    
